@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#315c5c"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fbfb; }
+      .title { font: 24px Arial, sans-serif; font-weight: bold; fill: #173030; }
+      .subtitle { font: 14px Arial, sans-serif; fill: #446060; }
+      .head { fill: #ffffff; stroke: #315c5c; stroke-width: 2; rx: 10; }
+      .lifeline { stroke: #93b5b5; stroke-width: 2; stroke-dasharray: 7 6; }
+      .msg { stroke: #315c5c; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .note { fill: #fff8e7; stroke: #d9b25b; stroke-width: 1.5; rx: 10; }
+      .label { font: 14px Arial, sans-serif; fill: #173030; text-anchor: middle; }
+      .small { font: 12px Arial, sans-serif; fill: #446060; text-anchor: middle; }
+      .left { font: 12px Arial, sans-serif; fill: #173030; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="640"/>
+  <text class="title" x="40" y="42">First-turn sequence</text>
+  <text class="subtitle" x="40" y="68">The graph understands the market before the main agent plans retrieval.</text>
+
+  <g>
+    <rect class="head" x="70" y="96" width="110" height="42"/><text class="label" x="125" y="122">User</text>
+    <rect class="head" x="220" y="96" width="150" height="42"/><text class="label" x="295" y="122">prepare_initial_context</text>
+    <rect class="head" x="420" y="96" width="90" height="42"/><text class="label" x="465" y="122">lookup()</text>
+    <rect class="head" x="560" y="96" width="110" height="42"/><text class="label" x="615" y="122">cg_research</text>
+    <rect class="head" x="720" y="96" width="110" height="42"/><text class="label" x="775" y="122">cg_interrupt</text>
+    <rect class="head" x="880" y="96" width="130" height="42"/><text class="label" x="945" y="122">UI / caller</text>
+    <rect class="head" x="1050" y="96" width="90" height="42"/><text class="label" x="1095" y="122">agent</text>
+  </g>
+
+  <g>
+    <line class="lifeline" x1="125" y1="138" x2="125" y2="590"/>
+    <line class="lifeline" x1="295" y1="138" x2="295" y2="590"/>
+    <line class="lifeline" x1="465" y1="138" x2="465" y2="590"/>
+    <line class="lifeline" x1="615" y1="138" x2="615" y2="590"/>
+    <line class="lifeline" x1="775" y1="138" x2="775" y2="590"/>
+    <line class="lifeline" x1="945" y1="138" x2="945" y2="590"/>
+    <line class="lifeline" x1="1095" y1="138" x2="1095" y2="590"/>
+  </g>
+
+  <path class="msg" d="M125 180 L295 180"/><text class="left" x="142" y="171">first user request</text>
+  <path class="msg" d="M295 230 L465 230"/><text class="left" x="320" y="221">resolve company reference</text>
+  <path class="msg" d="M465 260 L295 260"/><text class="left" x="321" y="252">optional lookup_result</text>
+  <path class="msg" d="M295 300 L615 300"/><text class="left" x="395" y="291">question + optional company profile</text>
+  <path class="msg" d="M615 340 L775 340"/><text class="left" x="648" y="331">clarification prompt ready</text>
+  <path class="msg" d="M775 380 L945 380"/><text class="left" x="804" y="371">interrupt_ready</text>
+  <path class="msg" d="M945 430 L775 430"/><text class="left" x="810" y="422">user clarification answer</text>
+  <path class="msg" d="M775 470 L1095 470"/><text class="left" x="820" y="461">hidden _agent_context built and consumed</text>
+
+  <rect class="note" x="520" y="510" width="410" height="70"/>
+  <text class="left" x="540" y="535">After the clarification round, the graph does not expose the</text>
+  <text class="left" x="540" y="554">full market brief through visible messages on the default path.</text>
+  <text class="left" x="540" y="573">It passes `_agent_context` privately into the main agent.</text>
+</svg>

@@ -1,0 +1,47 @@
+flowchart TB
+    subgraph VISIBLE [Visible state]
+        MSG[messages]
+        ERR[errors]
+        SL[shortlist]
+        HIST[shortlist_history]
+    end
+
+    subgraph HIDDEN [Hidden orchestration state]
+        CGM[_cg_messages]
+        CGS[_cg_structured]
+        AC[_agent_context]
+        TC[_tool_call_id]
+        EMB[_embeddings]
+    end
+
+    subgraph PLAN [Search plan state]
+        Q[question]
+        INT[intent]
+        SQ[search_query]
+        KW[bm25_keywords]
+        RM[rerank_mode]
+        FIL[filters]
+        LANG[user_language]
+        LOOK[lookup_result]
+    end
+
+    PIC[prepare_initial_context] --> Q
+    PIC --> LOOK
+    CGR[cg_research] --> CGM
+    CGR --> CGS
+    CGR --> LANG
+    CGI[cg_interrupt] --> CGM
+    SCTX[summarize_context] --> AC
+    AG[agent] --> MSG
+    PREP[prepare_search] --> Q
+    PREP --> INT
+    PREP --> SQ
+    PREP --> KW
+    PREP --> RM
+    PREP --> FIL
+    PREP --> TC
+    PREP --> HIST
+    SE[search_embed] --> EMB
+    SH[search_hybrid] --> SL
+    RRN[rerank] --> SL
+    SS[summarize_search] --> MSG

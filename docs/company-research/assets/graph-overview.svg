@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#315c5c"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fbfb; }
+      .panel { fill: #ffffff; stroke: #bdd4d4; stroke-width: 2; rx: 18; }
+      .group { fill: #eef6f6; stroke: #93b5b5; stroke-width: 2; rx: 18; }
+      .node { fill: #ffffff; stroke: #315c5c; stroke-width: 2; rx: 14; }
+      .agent { fill: #f2f7ff; stroke: #4369a8; stroke-width: 2; rx: 14; }
+      .search { fill: #fff7eb; stroke: #c98528; stroke-width: 2; rx: 14; }
+      .cg { fill: #eef7ef; stroke: #4c8a5c; stroke-width: 2; rx: 14; }
+      .start { fill: #edf2ff; stroke: #5c6bc0; stroke-width: 2; rx: 22; }
+      .label { font: 15px Arial, sans-serif; fill: #173030; text-anchor: middle; }
+      .small { font: 12px Arial, sans-serif; fill: #446060; text-anchor: middle; }
+      .title { font: 24px Arial, sans-serif; font-weight: bold; fill: #173030; }
+      .subtitle { font: 14px Arial, sans-serif; fill: #446060; }
+      .edge { stroke: #315c5c; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .dashed { stroke-dasharray: 7 6; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="560"/>
+  <text class="title" x="40" y="42">`pe_qa` graph overview</text>
+  <text class="subtitle" x="40" y="68">Two entry behaviors: first-turn context generation, then the agent-driven search loop.</text>
+
+  <rect class="start" x="530" y="92" width="140" height="46"/>
+  <text class="label" x="600" y="121">START</text>
+
+  <rect class="node" x="495" y="168" width="210" height="58"/>
+  <text class="label" x="600" y="194">entry_router</text>
+  <text class="small" x="600" y="213">first turn vs normal agent turn</text>
+
+  <rect class="group" x="70" y="258" width="470" height="218"/>
+  <text class="label" x="305" y="286">First-turn context path</text>
+
+  <rect class="cg" x="95" y="320" width="160" height="58"/>
+  <text class="label" x="175" y="346">prepare_initial_context</text>
+  <text class="small" x="175" y="365">seed question + lookup()</text>
+
+  <rect class="cg" x="285" y="320" width="110" height="58"/>
+  <text class="label" x="340" y="346">cg_research</text>
+  <text class="small" x="340" y="365">required web search</text>
+
+  <rect class="cg" x="425" y="320" width="90" height="58"/>
+  <text class="label" x="470" y="346">cg_interrupt</text>
+  <text class="small" x="470" y="365">suspend / resume</text>
+
+  <rect class="cg" x="215" y="402" width="180" height="58"/>
+  <text class="label" x="305" y="428">summarize_context</text>
+  <text class="small" x="305" y="447">build hidden _agent_context</text>
+
+  <rect class="group" x="640" y="258" width="490" height="238"/>
+  <text class="label" x="885" y="286">Agent + search path</text>
+
+  <rect class="agent" x="820" y="320" width="130" height="58"/>
+  <text class="label" x="885" y="346">agent</text>
+  <text class="small" x="885" y="365">plan, answer, or search</text>
+
+  <rect class="agent" x="800" y="432" width="170" height="58"/>
+  <text class="label" x="885" y="458">summarize_search</text>
+  <text class="small" x="885" y="477">return ToolMessage</text>
+
+  <rect class="node" x="1005" y="320" width="100" height="58"/>
+  <text class="label" x="1055" y="346">END</text>
+  <text class="small" x="1055" y="365">no tool call</text>
+
+  <rect class="search" x="660" y="402" width="115" height="58"/>
+  <text class="label" x="717" y="428">prepare_search</text>
+  <text class="small" x="717" y="447">normalize plan</text>
+
+  <rect class="search" x="660" y="500" width="110" height="40"/>
+  <text class="label" x="715" y="525">search_embed</text>
+
+  <rect class="search" x="790" y="500" width="120" height="40"/>
+  <text class="label" x="850" y="525">search_hybrid</text>
+
+  <rect class="search" x="930" y="500" width="90" height="40"/>
+  <text class="label" x="975" y="525">rerank</text>
+
+  <path class="edge" d="M600 138 L600 168"/>
+  <path class="edge" d="M535 226 C 470 242, 350 258, 175 320"/>
+  <text class="small" x="455" y="245">exactly one HumanMessage and no shortlist</text>
+  <path class="edge" d="M665 226 C 740 246, 835 275, 885 320"/>
+  <text class="small" x="785" y="245">all other cases</text>
+
+  <path class="edge" d="M255 349 L285 349"/>
+  <path class="edge" d="M395 349 L425 349"/>
+  <path class="edge" d="M470 378 C 460 396, 410 415, 395 421"/>
+  <path class="edge" d="M305 402 L305 378"/>
+  <path class="edge" d="M395 431 C 520 431, 665 430, 820 349"/>
+
+  <path class="edge" d="M950 349 L1005 349"/>
+  <text class="small" x="978" y="332">no tool call</text>
+
+  <path class="edge" d="M820 349 C 772 360, 735 380, 717 402"/>
+  <text class="small" x="760" y="378">tool call: search_companies</text>
+  <path class="edge" d="M717 460 L715 500"/>
+  <path class="edge" d="M770 520 L790 520"/>
+  <path class="edge" d="M910 520 L930 520"/>
+  <path class="edge" d="M975 500 C 975 474, 940 460, 970 460"/>
+  <path class="edge" d="M970 460 L970 461 C 970 456, 950 452, 970 452"/>
+  <path class="edge" d="M1020 520 C 1070 520, 1070 460, 970 460"/>
+  <path class="edge" d="M970 460 L970 459 C 970 454, 930 448, 970 448"/>
+  <path class="edge" d="M970 448 C 980 430, 940 412, 885 378"/>
+  <text class="small" x="1018" y="493">search_pipeline</text>
+  <path class="edge dashed" d="M885 432 L885 378"/>
+</svg>

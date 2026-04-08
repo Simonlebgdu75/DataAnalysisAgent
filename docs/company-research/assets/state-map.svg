@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#315c5c"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fbfb; }
+      .title { font: 24px Arial, sans-serif; font-weight: bold; fill: #173030; }
+      .subtitle { font: 14px Arial, sans-serif; fill: #446060; }
+      .group { stroke-width: 2; rx: 16; }
+      .visible { fill: #eef7ff; stroke: #86a9d8; }
+      .hidden { fill: #eef7ef; stroke: #6ca17a; }
+      .plan { fill: #fff8e7; stroke: #d9b25b; }
+      .nodes { fill: #ffffff; stroke: #315c5c; stroke-width: 2; rx: 12; }
+      .edge { stroke: #315c5c; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .label { font: 15px Arial, sans-serif; fill: #173030; font-weight: bold; }
+      .text { font: 13px Arial, sans-serif; fill: #173030; }
+      .nodeText { font: 12px Arial, sans-serif; fill: #173030; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="700"/>
+  <text class="title" x="40" y="42">State map</text>
+  <text class="subtitle" x="40" y="68">Visible conversation state, hidden orchestration state, and search-plan state move through different owners.</text>
+
+  <rect class="group visible" x="50" y="110" width="320" height="230"/>
+  <text class="label" x="75" y="145">Visible state</text>
+  <text class="text" x="75" y="180">messages</text>
+  <text class="text" x="75" y="205">errors</text>
+  <text class="text" x="75" y="230">shortlist</text>
+  <text class="text" x="75" y="255">shortlist_history</text>
+  <text class="text" x="75" y="295">This is the state most debuggers inspect first.</text>
+  <text class="text" x="75" y="318">It does not contain every important handoff.</text>
+
+  <rect class="group hidden" x="420" y="110" width="330" height="260"/>
+  <text class="label" x="445" y="145">Hidden orchestration state</text>
+  <text class="text" x="445" y="180">_cg_messages</text>
+  <text class="text" x="445" y="205">_cg_structured</text>
+  <text class="text" x="445" y="230">_agent_context</text>
+  <text class="text" x="445" y="255">_tool_call_id</text>
+  <text class="text" x="445" y="280">_embeddings</text>
+  <text class="text" x="445" y="305">lookup_result</text>
+  <text class="text" x="445" y="330">user_language</text>
+
+  <rect class="group plan" x="800" y="110" width="340" height="280"/>
+  <text class="label" x="825" y="145">Search-plan state</text>
+  <text class="text" x="825" y="180">question</text>
+  <text class="text" x="825" y="205">intent</text>
+  <text class="text" x="825" y="230">search_query</text>
+  <text class="text" x="825" y="255">bm25_keywords</text>
+  <text class="text" x="825" y="280">rerank_mode</text>
+  <text class="text" x="825" y="305">filters</text>
+  <text class="text" x="825" y="330">These fields are normalized in prepare_search</text>
+  <text class="text" x="825" y="353">before retrieval starts.</text>
+
+  <rect class="nodes" x="110" y="470" width="150" height="56"/>
+  <text class="nodeText" x="185" y="494">prepare_initial_context</text>
+  <text class="nodeText" x="185" y="512">lookup()</text>
+
+  <rect class="nodes" x="315" y="470" width="130" height="56"/>
+  <text class="nodeText" x="380" y="494">cg_research</text>
+  <text class="nodeText" x="380" y="512">cg_interrupt</text>
+
+  <rect class="nodes" x="505" y="470" width="150" height="56"/>
+  <text class="nodeText" x="580" y="494">summarize_context</text>
+  <text class="nodeText" x="580" y="512">agent</text>
+
+  <rect class="nodes" x="720" y="470" width="150" height="56"/>
+  <text class="nodeText" x="795" y="494">prepare_search</text>
+  <text class="nodeText" x="795" y="512">search_embed</text>
+
+  <rect class="nodes" x="930" y="470" width="170" height="56"/>
+  <text class="nodeText" x="1015" y="494">search_hybrid</text>
+  <text class="nodeText" x="1015" y="512">rerank / summarize_search</text>
+
+  <path class="edge" d="M185 470 C 185 405, 220 360, 240 340"/>
+  <path class="edge" d="M185 470 C 185 390, 470 380, 500 370"/>
+  <path class="edge" d="M380 470 C 380 420, 540 395, 560 370"/>
+  <path class="edge" d="M580 470 C 580 420, 580 395, 580 370"/>
+  <path class="edge" d="M580 470 C 580 420, 930 410, 930 390"/>
+  <path class="edge" d="M795 470 C 795 425, 875 410, 930 390"/>
+  <path class="edge" d="M795 470 C 795 420, 930 390, 930 370"/>
+  <path class="edge" d="M1015 470 C 1015 420, 240 390, 240 340"/>
+
+  <text class="text" x="62" y="630">Key debugging rule: a missing field in `messages` does not mean the agent did not receive it.</text>
+  <text class="text" x="62" y="652">The first-turn market brief is usually carried in `_agent_context`, not in a visible ToolMessage.</text>
+</svg>

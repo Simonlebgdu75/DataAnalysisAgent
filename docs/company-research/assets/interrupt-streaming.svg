@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#315c5c"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fbfb; }
+      .title { font: 24px Arial, sans-serif; font-weight: bold; fill: #173030; }
+      .subtitle { font: 14px Arial, sans-serif; fill: #446060; }
+      .head { fill: #ffffff; stroke: #315c5c; stroke-width: 2; rx: 10; }
+      .lifeline { stroke: #93b5b5; stroke-width: 2; stroke-dasharray: 7 6; }
+      .msg { stroke: #315c5c; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .note { fill: #eef7ff; stroke: #86a9d8; stroke-width: 1.5; rx: 10; }
+      .label { font: 14px Arial, sans-serif; fill: #173030; text-anchor: middle; }
+      .left { font: 12px Arial, sans-serif; fill: #173030; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="560"/>
+  <text class="title" x="40" y="42">Interrupt and streaming flow</text>
+  <text class="subtitle" x="40" y="68">The graph emits structured events throughout execution and suspends cleanly in `cg_interrupt`.</text>
+
+  <g>
+    <rect class="head" x="90" y="96" width="110" height="42"/><text class="label" x="145" y="122">cg_research</text>
+    <rect class="head" x="290" y="96" width="110" height="42"/><text class="label" x="345" y="122">stream writer</text>
+    <rect class="head" x="500" y="96" width="110" height="42"/><text class="label" x="555" y="122">cg_interrupt</text>
+    <rect class="head" x="710" y="96" width="110" height="42"/><text class="label" x="765" y="122">UI / caller</text>
+    <rect class="head" x="920" y="96" width="150" height="42"/><text class="label" x="995" y="122">summarize_context + search</text>
+  </g>
+
+  <g>
+    <line class="lifeline" x1="145" y1="138" x2="145" y2="500"/>
+    <line class="lifeline" x1="345" y1="138" x2="345" y2="500"/>
+    <line class="lifeline" x1="555" y1="138" x2="555" y2="500"/>
+    <line class="lifeline" x1="765" y1="138" x2="765" y2="500"/>
+    <line class="lifeline" x1="995" y1="138" x2="995" y2="500"/>
+  </g>
+
+  <path class="msg" d="M145 180 L345 180"/><text class="left" x="168" y="171">phase:start</text>
+  <path class="msg" d="M145 215 L345 215"/><text class="left" x="168" y="206">context_questions</text>
+  <path class="msg" d="M145 250 L345 250"/><text class="left" x="168" y="241">phase:complete</text>
+
+  <path class="msg" d="M555 300 L345 300"/><text class="left" x="368" y="291">interrupt_ready</text>
+  <path class="msg" d="M555 335 L765 335"/><text class="left" x="578" y="326">interrupt(...)</text>
+  <path class="msg" d="M765 375 L555 375"/><text class="left" x="582" y="367">resume with answer</text>
+  <path class="msg" d="M555 410 L345 410"/><text class="left" x="365" y="401">interrupt_resume</text>
+
+  <path class="msg" d="M995 455 L345 455"/><text class="left" x="610" y="446">context_ready, search_plan, phase, metric, error</text>
+
+  <rect class="note" x="885" y="180" width="250" height="120"/>
+  <text class="left" x="902" y="205">Search and rerank nodes publish</text>
+  <text class="left" x="902" y="224">a stream of operational signals,</text>
+  <text class="left" x="902" y="243">not just final results:</text>
+  <text class="left" x="902" y="267">- phase</text>
+  <text class="left" x="902" y="286">- metric</text>
+  <text class="left" x="902" y="305">- error</text>
+</svg>

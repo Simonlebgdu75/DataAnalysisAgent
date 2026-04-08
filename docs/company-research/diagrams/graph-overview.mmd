@@ -1,0 +1,21 @@
+flowchart TD
+    START([START]) --> ENTRY[entry_router]
+    ENTRY -->|exactly one HumanMessage\nand no shortlist| PIC[prepare_initial_context]
+    ENTRY -->|all other cases| AGENT[agent]
+
+    PIC --> CGR[cg_research]
+    CGR --> CGI[cg_interrupt]
+    CGI --> SCTX[summarize_context]
+    SCTX --> AGENT
+
+    AGENT -->|tool call: search_companies| PREP[prepare_search]
+    AGENT -->|no tool call| END([END])
+
+    subgraph SEARCH_PIPELINE [search_pipeline]
+        SE[search_embed] --> SH[search_hybrid]
+        SH --> RR[rerank]
+    end
+
+    PREP --> SE
+    RR --> SS[summarize_search]
+    SS --> AGENT

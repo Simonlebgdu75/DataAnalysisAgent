@@ -1,0 +1,21 @@
+sequenceDiagram
+    participant U as User
+    participant A as agent
+    participant P as prepare_search
+    participant E as search_embed
+    participant H as search_hybrid
+    participant DB as PostgreSQL
+    participant R as rerank
+    participant A2 as agent
+
+    U->>A: Follow-up request
+    Note over A: Sees CURRENT SHORTLIST and prior messages
+    A->>P: search_companies tool call
+    P-->>E: normalized search state
+    E-->>H: embedding or skip
+    H->>DB: Hybrid retrieval or shortlist filtering
+    DB-->>H: raw company rows
+    H-->>R: shortlist
+    Note over R,A2: summarize_search packages the ToolMessage summary
+    R-->>A2: filtered shortlist summary
+    A2-->>U: Final analysis

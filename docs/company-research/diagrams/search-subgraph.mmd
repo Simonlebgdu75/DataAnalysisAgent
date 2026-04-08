@@ -1,0 +1,15 @@
+flowchart LR
+    IN[prepared search state] --> DEC{intent == filter\nand shortlist exists?}
+
+    DEC -->|yes| SKIP[search_embed skipped]
+    DEC -->|no| EMB[search_embed]
+
+    SKIP --> FILTER[search_hybrid:\nin-memory shortlist filters\n+ keyword ranking]
+    EMB --> HYB[search_hybrid:\nprofile SQL + product SQL\nin parallel]
+
+    HYB --> MERGE[merge by linkedin_slug\nsum RRF scores\nattach products]
+    FILTER --> RR[rerank]
+    MERGE --> RR[rerank]
+
+    RR --> ENRICH[enrich_shortlist_light:\nformatted revenue]
+    ENRICH --> OUT[shortlist for UI + summarize_search]

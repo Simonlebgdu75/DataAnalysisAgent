@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant CG as cg_research
+    participant STREAM as stream writer
+    participant INT as cg_interrupt
+    participant UI as UI / caller
+    participant NEXT as summarize_context + search nodes
+
+    CG->>STREAM: phase:start / context_questions / phase:complete
+    INT->>STREAM: phase:start
+    INT->>STREAM: interrupt_ready
+    INT-->>UI: interrupt(...)
+    UI-->>INT: resume with answer
+    INT->>STREAM: interrupt_resume
+    INT->>STREAM: phase:complete
+    NEXT->>STREAM: context_ready / search_plan / phase / metric / error

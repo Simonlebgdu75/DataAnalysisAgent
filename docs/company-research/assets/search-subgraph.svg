@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#315c5c"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fbfb; }
+      .title { font: 24px Arial, sans-serif; font-weight: bold; fill: #173030; }
+      .subtitle { font: 14px Arial, sans-serif; fill: #446060; }
+      .box { fill: #ffffff; stroke: #315c5c; stroke-width: 2; rx: 14; }
+      .orange { fill: #fff7eb; stroke: #c98528; stroke-width: 2; rx: 14; }
+      .green { fill: #eef7ef; stroke: #4c8a5c; stroke-width: 2; rx: 14; }
+      .decision { fill: #eef6f6; stroke: #315c5c; stroke-width: 2; }
+      .edge { stroke: #315c5c; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .label { font: 14px Arial, sans-serif; fill: #173030; text-anchor: middle; }
+      .small { font: 12px Arial, sans-serif; fill: #446060; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="520"/>
+  <text class="title" x="40" y="42">Search subgraph internals</text>
+  <text class="subtitle" x="40" y="68">The same subgraph supports both global retrieval and shortlist-only filtering.</text>
+
+  <rect class="box" x="60" y="210" width="160" height="60"/>
+  <text class="label" x="140" y="237">prepared search state</text>
+  <text class="small" x="140" y="256">from prepare_search</text>
+
+  <polygon class="decision" points="300,170 430,240 300,310 170,240"/>
+  <text class="label" x="300" y="232">intent == filter</text>
+  <text class="small" x="300" y="251">and shortlist exists?</text>
+
+  <rect class="green" x="490" y="110" width="180" height="60"/>
+  <text class="label" x="580" y="137">search_embed skipped</text>
+  <text class="small" x="580" y="156">shortlist filter path</text>
+
+  <rect class="orange" x="500" y="300" width="160" height="60"/>
+  <text class="label" x="580" y="327">search_embed</text>
+  <text class="small" x="580" y="346">text-embedding-3-large</text>
+
+  <rect class="green" x="740" y="90" width="210" height="85"/>
+  <text class="label" x="845" y="118">search_hybrid</text>
+  <text class="small" x="845" y="139">in-memory filters</text>
+  <text class="small" x="845" y="157">keyword count ranking</text>
+
+  <rect class="orange" x="730" y="280" width="230" height="96"/>
+  <text class="label" x="845" y="309">search_hybrid</text>
+  <text class="small" x="845" y="330">profile SQL + product SQL in parallel</text>
+  <text class="small" x="845" y="348">merge by linkedin_slug, sum RRF scores</text>
+  <text class="small" x="845" y="366">attach products_services</text>
+
+  <rect class="box" x="1010" y="200" width="120" height="60"/>
+  <text class="label" x="1070" y="227">rerank</text>
+  <text class="small" x="1070" y="246">gpt-4.1-mini</text>
+
+  <rect class="box" x="1010" y="320" width="150" height="60"/>
+  <text class="label" x="1085" y="347">enrich_shortlist_light</text>
+  <text class="small" x="1085" y="366">formatted revenue</text>
+
+  <rect class="box" x="1010" y="430" width="150" height="60"/>
+  <text class="label" x="1085" y="457">shortlist</text>
+  <text class="small" x="1085" y="476">UI table + summarize_search</text>
+
+  <path class="edge" d="M220 240 L170 240"/>
+  <path class="edge" d="M430 220 L490 145"/>
+  <text class="small" x="472" y="184">yes</text>
+  <path class="edge" d="M430 260 L500 330"/>
+  <text class="small" x="470" y="304">no</text>
+  <path class="edge" d="M670 140 L740 140"/>
+  <path class="edge" d="M660 330 L730 330"/>
+  <path class="edge" d="M950 140 C 990 140, 990 220, 1010 230"/>
+  <path class="edge" d="M960 330 C 988 330, 994 252, 1010 240"/>
+  <path class="edge" d="M1070 260 L1085 320"/>
+  <path class="edge" d="M1085 380 L1085 430"/>
+</svg>

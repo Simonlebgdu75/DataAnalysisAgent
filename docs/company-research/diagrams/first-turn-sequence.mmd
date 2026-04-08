@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant U as User
+    participant P as prepare_initial_context
+    participant L as lookup()
+    participant C as cg_research
+    participant I as cg_interrupt
+    participant UI as UI / caller
+    participant A as agent
+
+    U->>P: First user request
+    P->>L: Resolve company reference
+    L-->>P: Optional lookup_result
+    P->>C: Run context generator
+    Note over C: Required web search happens inside the model call
+    C-->>I: Clarification prompt ready
+    I-->>UI: interrupt_ready
+    UI-->>I: User clarification answer
+    Note over I,A: summarize_context builds hidden _agent_context
+    I-->>A: Invoke main agent with hidden brief

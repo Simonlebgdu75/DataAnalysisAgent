@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="660" viewBox="0 0 1200 660">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#315c5c"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fbfb; }
+      .title { font: 24px Arial, sans-serif; font-weight: bold; fill: #173030; }
+      .subtitle { font: 14px Arial, sans-serif; fill: #446060; }
+      .head { fill: #ffffff; stroke: #315c5c; stroke-width: 2; rx: 10; }
+      .lifeline { stroke: #93b5b5; stroke-width: 2; stroke-dasharray: 7 6; }
+      .msg { stroke: #315c5c; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .note { fill: #eef7ff; stroke: #86a9d8; stroke-width: 1.5; rx: 10; }
+      .label { font: 14px Arial, sans-serif; fill: #173030; text-anchor: middle; }
+      .left { font: 12px Arial, sans-serif; fill: #173030; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="660"/>
+  <text class="title" x="40" y="42">Follow-up search sequence</text>
+  <text class="subtitle" x="40" y="68">Later turns start at the main agent and loop through the search subgraph only when needed.</text>
+
+  <g>
+    <rect class="head" x="60" y="96" width="100" height="42"/><text class="label" x="110" y="122">User</text>
+    <rect class="head" x="210" y="96" width="90" height="42"/><text class="label" x="255" y="122">agent</text>
+    <rect class="head" x="350" y="96" width="110" height="42"/><text class="label" x="405" y="122">prepare_search</text>
+    <rect class="head" x="510" y="96" width="100" height="42"/><text class="label" x="560" y="122">search_embed</text>
+    <rect class="head" x="650" y="96" width="110" height="42"/><text class="label" x="705" y="122">search_hybrid</text>
+    <rect class="head" x="810" y="96" width="100" height="42"/><text class="label" x="860" y="122">PostgreSQL</text>
+    <rect class="head" x="960" y="96" width="80" height="42"/><text class="label" x="1000" y="122">rerank</text>
+    <rect class="head" x="1070" y="96" width="100" height="42"/><text class="label" x="1120" y="122">agent</text>
+  </g>
+
+  <g>
+    <line class="lifeline" x1="110" y1="138" x2="110" y2="610"/>
+    <line class="lifeline" x1="255" y1="138" x2="255" y2="610"/>
+    <line class="lifeline" x1="405" y1="138" x2="405" y2="610"/>
+    <line class="lifeline" x1="560" y1="138" x2="560" y2="610"/>
+    <line class="lifeline" x1="705" y1="138" x2="705" y2="610"/>
+    <line class="lifeline" x1="860" y1="138" x2="860" y2="610"/>
+    <line class="lifeline" x1="1000" y1="138" x2="1000" y2="610"/>
+    <line class="lifeline" x1="1120" y1="138" x2="1120" y2="610"/>
+  </g>
+
+  <path class="msg" d="M110 180 L255 180"/><text class="left" x="128" y="171">follow-up request</text>
+  <path class="msg" d="M255 240 L405 240"/><text class="left" x="287" y="231">search_companies tool call</text>
+  <path class="msg" d="M405 290 L560 290"/><text class="left" x="430" y="281">normalized state</text>
+  <path class="msg" d="M560 340 L705 340"/><text class="left" x="590" y="331">embedding or skip</text>
+  <path class="msg" d="M705 390 L860 390"/><text class="left" x="732" y="381">hybrid SQL or shortlist filter</text>
+  <path class="msg" d="M860 420 L705 420"/><text class="left" x="724" y="412">profile/product rows</text>
+  <path class="msg" d="M705 470 L1000 470"/><text class="left" x="768" y="461">shortlist for reranking</text>
+  <path class="msg" d="M1000 520 L1120 520"/><text class="left" x="1015" y="511">ToolMessage summary</text>
+  <path class="msg" d="M1120 570 L110 570"/><text class="left" x="860" y="562">final visible analysis while UI shows the shortlist table</text>
+
+  <rect class="note" x="210" y="600" width="520" height="38"/>
+  <text class="left" x="228" y="624">If `restrict_to_shortlist=true`, `search_embed` skips and `search_hybrid` filters/ranks the current shortlist in memory.</text>
+</svg>
