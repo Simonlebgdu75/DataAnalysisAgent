@@ -562,22 +562,9 @@ textarea {
   box-shadow: var(--shadow);
 }
 
-.login-card h1 {
-  margin: 0;
-  font-size: 2.3rem;
-  letter-spacing: -0.05em;
-}
-
-.login-card p {
-  margin: 12px 0 0;
-  color: var(--ink-muted);
-  line-height: 1.6;
-}
-
 .login-form {
   display: grid;
   gap: 14px;
-  margin-top: 24px;
 }
 
 .login-label {
