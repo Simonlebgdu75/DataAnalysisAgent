@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
+  <title id="title">State map</title>
+  <desc id="desc">Grouped pe_deal state fields and the nodes that write them.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3f4b5a"/>
+    </marker>
+    <style>
+      .group { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.2; rx: 10; }
+      .box { fill: #ffffff; stroke: #5b6b7d; stroke-width: 1.2; rx: 7; }
+      .writer { fill: #fff7ed; stroke: #b45309; stroke-width: 1.2; rx: 7; }
+      .title { font: 15px Inter, Arial, sans-serif; fill: #172033; font-weight: 700; text-anchor: middle; }
+      .label { font: 12px Inter, Arial, sans-serif; fill: #172033; text-anchor: middle; dominant-baseline: middle; }
+      .edge { stroke: #64748b; stroke-width: 1.1; fill: none; marker-end: url(#arrow); opacity: .8; }
+    </style>
+  </defs>
+
+  <rect class="group" x="30" y="30" width="205" height="170"/>
+  <text class="title" x="132" y="58">conversation</text>
+  <rect class="box" x="70" y="80" width="125" height="30"/><text class="label" x="132" y="95">messages</text>
+  <rect class="box" x="70" y="120" width="125" height="30"/><text class="label" x="132" y="135">errors</text>
+  <rect class="box" x="70" y="160" width="125" height="30"/><text class="label" x="132" y="175">progress</text>
+
+  <rect class="group" x="270" y="30" width="220" height="225"/>
+  <text class="title" x="380" y="58">hidden context</text>
+  <rect class="box" x="315" y="80" width="130" height="30"/><text class="label" x="380" y="95">_cg_messages</text>
+  <rect class="box" x="315" y="120" width="130" height="30"/><text class="label" x="380" y="135">_cg_structured</text>
+  <rect class="box" x="315" y="160" width="130" height="30"/><text class="label" x="380" y="175">_agent_context</text>
+  <rect class="box" x="315" y="200" width="130" height="30"/><text class="label" x="380" y="215">lookup_result</text>
+
+  <rect class="group" x="525" y="30" width="405" height="225"/>
+  <text class="title" x="728" y="58">search plan</text>
+  <rect class="box" x="560" y="80" width="120" height="30"/><text class="label" x="620" y="95">question</text>
+  <rect class="box" x="700" y="80" width="120" height="30"/><text class="label" x="760" y="95">context</text>
+  <rect class="box" x="560" y="120" width="120" height="30"/><text class="label" x="620" y="135">search_query</text>
+  <rect class="box" x="700" y="120" width="120" height="30"/><text class="label" x="760" y="135">bm25_keywords</text>
+  <rect class="box" x="560" y="160" width="120" height="30"/><text class="label" x="620" y="175">country_code</text>
+  <rect class="box" x="700" y="160" width="120" height="30"/><text class="label" x="760" y="175">rerank_mode</text>
+  <rect class="box" x="630" y="200" width="120" height="30"/><text class="label" x="690" y="215">tool_summary</text>
+
+  <rect class="group" x="525" y="300" width="405" height="180"/>
+  <text class="title" x="728" y="328">results</text>
+  <rect class="box" x="560" y="350" width="135" height="30"/><text class="label" x="628" y="365">target_shortlist</text>
+  <rect class="box" x="720" y="350" width="135" height="30"/><text class="label" x="788" y="365">deals_shortlist</text>
+  <rect class="box" x="560" y="395" width="135" height="30"/><text class="label" x="628" y="410">acquirers_shortlist</text>
+  <rect class="box" x="720" y="395" width="135" height="30"/><text class="label" x="788" y="410">shortlist</text>
+
+  <rect class="writer" x="65" y="300" width="155" height="34"/><text class="label" x="142" y="317">prepare_initial</text>
+  <rect class="writer" x="65" y="350" width="155" height="34"/><text class="label" x="142" y="367">cg_research</text>
+  <rect class="writer" x="65" y="400" width="155" height="34"/><text class="label" x="142" y="417">summarize_context</text>
+  <rect class="writer" x="65" y="450" width="155" height="34"/><text class="label" x="142" y="467">search_hybrid tool</text>
+
+  <path class="edge" d="M220 317 C270 280 300 225 315 215"/>
+  <path class="edge" d="M220 317 C360 270 500 125 560 95"/>
+  <path class="edge" d="M220 367 C255 330 300 170 315 135"/>
+  <path class="edge" d="M220 367 C255 320 300 100 315 95"/>
+  <path class="edge" d="M220 417 C275 390 325 220 315 175"/>
+  <path class="edge" d="M220 467 C390 445 515 405 560 365"/>
+  <path class="edge" d="M220 467 C390 455 675 420 720 410"/>
+  <path class="edge" d="M220 467 C425 365 555 235 620 135"/>
+  <path class="edge" d="M220 467 C500 300 650 225 690 215"/>
+  <path class="edge" d="M220 467 C175 420 150 250 132 175"/>
+</svg>

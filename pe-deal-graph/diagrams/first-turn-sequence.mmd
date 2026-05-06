@@ -1,0 +1,21 @@
+sequenceDiagram
+    participant U as User
+    participant P as prepare_initial_context
+    participant L as lookup()
+    participant C as cg_research
+    participant I as cg_interrupt
+    participant UI as UI / caller
+    participant S as summarize_context
+    participant A as agent
+
+    U->>P: First buyer-search request
+    P->>L: Resolve company reference
+    L-->>P: Optional lookup_result
+    P->>C: Run context generator
+    Note over C: Required web_search_preview inside Responses API
+    C-->>I: Target summary and closed questions
+    I-->>UI: interrupt payload
+    UI-->>I: User clarification answer
+    I-->>S: Updated _cg_messages
+    S-->>A: Hidden _agent_context
+    A-->>A: Decide answer or search_hybrid

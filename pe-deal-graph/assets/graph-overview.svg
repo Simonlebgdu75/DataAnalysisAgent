@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
+  <title id="title">pe_deal graph overview</title>
+  <desc id="desc">Flow from entry router through first-turn context generation, agent, search_hybrid tool, and final answer.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3f4b5a"/>
+    </marker>
+    <style>
+      .box { fill: #ffffff; stroke: #5b6b7d; stroke-width: 1.5; rx: 8; }
+      .phase { fill: #f4f8ff; stroke: #5577aa; stroke-width: 1.5; rx: 8; }
+      .tool { fill: #fff7ed; stroke: #b45309; stroke-width: 1.5; rx: 8; }
+      .terminal { fill: #eef2f7; stroke: #64748b; stroke-width: 1.5; rx: 20; }
+      .label { font: 14px Inter, Arial, sans-serif; fill: #172033; text-anchor: middle; dominant-baseline: middle; }
+      .small { font: 12px Inter, Arial, sans-serif; fill: #475569; text-anchor: middle; }
+      .edge { stroke: #3f4b5a; stroke-width: 1.4; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="terminal" x="410" y="24" width="140" height="44"/>
+  <text class="label" x="480" y="46">START</text>
+
+  <rect class="box" x="385" y="100" width="190" height="52"/>
+  <text class="label" x="480" y="126">entry_router</text>
+
+  <rect class="phase" x="80" y="205" width="190" height="52"/>
+  <text class="label" x="175" y="231">prepare_initial_context</text>
+
+  <rect class="phase" x="80" y="296" width="190" height="52"/>
+  <text class="label" x="175" y="322">cg_research</text>
+
+  <rect class="phase" x="80" y="387" width="190" height="52"/>
+  <text class="label" x="175" y="413">cg_interrupt</text>
+
+  <rect class="phase" x="355" y="387" width="190" height="52"/>
+  <text class="label" x="450" y="413">summarize_context</text>
+
+  <rect class="box" x="620" y="205" width="150" height="52"/>
+  <text class="label" x="695" y="231">agent</text>
+
+  <rect class="tool" x="610" y="322" width="170" height="52"/>
+  <text class="label" x="695" y="348">ToolNode</text>
+  <text class="small" x="695" y="366">search_hybrid</text>
+
+  <rect class="tool" x="606" y="418" width="178" height="92"/>
+  <text class="label" x="695" y="444">tool body</text>
+  <text class="small" x="695" y="466">search</text>
+  <text class="small" x="695" y="484">rerank + deals</text>
+  <text class="small" x="695" y="502">Command update</text>
+
+  <rect class="terminal" x="810" y="205" width="100" height="52"/>
+  <text class="label" x="860" y="231">END</text>
+
+  <path class="edge" d="M480 68 L480 100"/>
+  <path class="edge" d="M430 152 L230 205"/>
+  <path class="edge" d="M175 257 L175 296"/>
+  <path class="edge" d="M175 348 L175 387"/>
+  <path class="edge" d="M270 413 L355 413"/>
+  <path class="edge" d="M545 413 C612 413 620 297 667 257"/>
+  <path class="edge" d="M575 126 C665 126 695 160 695 205"/>
+  <path class="edge" d="M770 231 L810 231"/>
+  <path class="edge" d="M695 257 L695 322"/>
+  <path class="edge" d="M695 374 L695 418"/>
+  <path class="edge" d="M606 464 C540 464 540 282 620 244"/>
+
+  <text class="small" x="281" y="182">first turn</text>
+  <text class="small" x="650" y="154">normal turn</text>
+  <text class="small" x="832" y="300">no tool call</text>
+</svg>

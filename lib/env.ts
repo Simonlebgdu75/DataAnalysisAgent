@@ -34,7 +34,7 @@ export function getLangGraphEnv(): LangGraphEnv {
     apiKey: getOptionalEnv("LANGGRAPH_API_KEY"),
     authHeader: getOptionalEnv("LANGGRAPH_AUTH_HEADER") ?? "x-api-key",
     authScheme: getOptionalEnv("LANGGRAPH_AUTH_SCHEME") ?? "Bearer",
-    assistantId: getOptionalEnv("LANGGRAPH_ASSISTANT_ID") ?? "pe_qa",
+    assistantId: getOptionalEnv("LANGGRAPH_ASSISTANT_ID") ?? "pe_deal",
     timeoutMs,
   };
 }

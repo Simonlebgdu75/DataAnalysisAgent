@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="430" viewBox="0 0 960 430" role="img" aria-labelledby="title desc">
+  <title id="title">First-turn sequence</title>
+  <desc id="desc">First-turn flow from user request through lookup, context generator, interrupt, summarize_context, and agent.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3f4b5a"/>
+    </marker>
+    <style>
+      .lane { stroke: #cbd5e1; stroke-width: 1; stroke-dasharray: 4 4; }
+      .node { fill: #ffffff; stroke: #5b6b7d; stroke-width: 1.4; rx: 8; }
+      .ctx { fill: #f4f8ff; stroke: #5577aa; stroke-width: 1.4; rx: 8; }
+      .interrupt { fill: #fff7ed; stroke: #b45309; stroke-width: 1.4; rx: 8; }
+      .label { font: 13px Inter, Arial, sans-serif; fill: #172033; text-anchor: middle; dominant-baseline: middle; }
+      .small { font: 12px Inter, Arial, sans-serif; fill: #475569; text-anchor: middle; }
+      .edge { stroke: #3f4b5a; stroke-width: 1.4; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <line class="lane" x1="80" y1="92" x2="80" y2="380"/>
+  <line class="lane" x1="230" y1="92" x2="230" y2="380"/>
+  <line class="lane" x1="380" y1="92" x2="380" y2="380"/>
+  <line class="lane" x1="530" y1="92" x2="530" y2="380"/>
+  <line class="lane" x1="680" y1="92" x2="680" y2="380"/>
+  <line class="lane" x1="830" y1="92" x2="830" y2="380"/>
+
+  <rect class="node" x="25" y="36" width="110" height="44"/>
+  <text class="label" x="80" y="58">User</text>
+  <rect class="ctx" x="155" y="36" width="150" height="44"/>
+  <text class="label" x="230" y="58">prepare_initial</text>
+  <rect class="node" x="325" y="36" width="110" height="44"/>
+  <text class="label" x="380" y="58">lookup</text>
+  <rect class="ctx" x="465" y="36" width="130" height="44"/>
+  <text class="label" x="530" y="58">cg_research</text>
+  <rect class="interrupt" x="615" y="36" width="130" height="44"/>
+  <text class="label" x="680" y="58">interrupt</text>
+  <rect class="node" x="775" y="36" width="110" height="44"/>
+  <text class="label" x="830" y="58">agent</text>
+
+  <path class="edge" d="M80 125 L210 125"/>
+  <text class="small" x="145" y="113">request</text>
+
+  <path class="edge" d="M230 170 L360 170"/>
+  <text class="small" x="295" y="158">company name</text>
+
+  <path class="edge" d="M380 215 L250 215"/>
+  <text class="small" x="315" y="203">lookup_result</text>
+
+  <path class="edge" d="M230 260 L510 260"/>
+  <text class="small" x="370" y="248">question + profile</text>
+
+  <path class="edge" d="M530 305 L660 305"/>
+  <text class="small" x="595" y="293">closed questions</text>
+
+  <path class="edge" d="M680 350 L100 350"/>
+  <text class="small" x="390" y="338">UI resumes with answer</text>
+
+  <path class="edge" d="M700 380 C760 400 810 400 830 350"/>
+  <text class="small" x="765" y="398">hidden brief</text>
+</svg>

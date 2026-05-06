@@ -15,8 +15,8 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "pe_qa Demo",
-  description: "Protected Vercel demo frontend for the pe_qa LangGraph assistant.",
+  title: "pe_deal Demo",
+  description: "Protected Vercel demo frontend for the pe_deal LangGraph assistant.",
 };
 
 type RootLayoutProps = Readonly<{
@@ -30,4 +30,3 @@ export default function RootLayout({ children }: RootLayoutProps) {
     </html>
   );
 }
-

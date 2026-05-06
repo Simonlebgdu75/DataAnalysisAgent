@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520" role="img" aria-labelledby="title desc">
+  <title id="title">Deal enrichment flow</title>
+  <desc id="desc">Flow from target candidates through rerank, deals, shareholdings, acquirers, and final shortlist.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3f4b5a"/>
+    </marker>
+    <style>
+      .box { fill: #ffffff; stroke: #5b6b7d; stroke-width: 1.4; rx: 8; }
+      .result { fill: #f4f8ff; stroke: #5577aa; stroke-width: 1.4; rx: 8; }
+      .db { fill: #f0fdf4; stroke: #15803d; stroke-width: 1.4; rx: 8; }
+      .final { fill: #fff7ed; stroke: #b45309; stroke-width: 1.4; rx: 8; }
+      .label { font: 14px Inter, Arial, sans-serif; fill: #172033; text-anchor: middle; dominant-baseline: middle; }
+      .small { font: 12px Inter, Arial, sans-serif; fill: #475569; text-anchor: middle; }
+      .edge { stroke: #3f4b5a; stroke-width: 1.4; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="box" x="60" y="50" width="170" height="54"/>
+  <text class="label" x="145" y="77">hybrid candidates</text>
+
+  <rect class="box" x="305" y="50" width="150" height="54"/>
+  <text class="label" x="380" y="77">rerank</text>
+
+  <rect class="result" x="530" y="50" width="170" height="54"/>
+  <text class="label" x="615" y="77">target_shortlist</text>
+
+  <rect class="db" x="265" y="175" width="160" height="54"/>
+  <text class="label" x="345" y="202">deal table</text>
+
+  <rect class="db" x="505" y="175" width="180" height="54"/>
+  <text class="label" x="595" y="202">fund_portfolio</text>
+
+  <rect class="result" x="385" y="300" width="170" height="54"/>
+  <text class="label" x="470" y="327">deals_shortlist</text>
+
+  <rect class="result" x="650" y="300" width="190" height="54"/>
+  <text class="label" x="745" y="327">acquirers_shortlist</text>
+
+  <rect class="final" x="385" y="425" width="190" height="54"/>
+  <text class="label" x="480" y="452">shortlist</text>
+  <text class="small" x="480" y="470">final display payload</text>
+
+  <path class="edge" d="M230 77 L305 77"/>
+  <path class="edge" d="M455 77 L530 77"/>
+  <path class="edge" d="M585 104 C520 130 405 145 355 175"/>
+  <path class="edge" d="M615 104 L600 175"/>
+  <path class="edge" d="M345 229 C365 270 420 280 455 300"/>
+  <path class="edge" d="M595 229 C560 260 515 280 490 300"/>
+  <path class="edge" d="M555 327 L650 327"/>
+  <path class="edge" d="M595 229 C705 238 745 270 745 300"/>
+  <path class="edge" d="M615 104 C710 142 770 215 745 300"/>
+  <path class="edge" d="M470 354 L480 425"/>
+  <path class="edge" d="M745 354 C680 402 610 425 575 452"/>
+  <path class="edge" d="M615 104 C600 245 550 345 500 425"/>
+</svg>

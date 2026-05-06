@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-import { PeQaShell } from "@/components/pe-qa-shell";
+import { PeDealShell } from "@/components/pe-deal-shell";
 
 function AppPageFallback() {
   return (
@@ -8,7 +8,7 @@ function AppPageFallback() {
       <section className="hero">
         <div className="hero-copy">
           <p className="eyebrow">Vercel BFF + LangGraph</p>
-          <h1>Loading `pe_qa`…</h1>
+          <h1>Loading `pe_deal`...</h1>
           <p>Rebuilding the client state for the protected conversation view.</p>
         </div>
       </section>
@@ -19,7 +19,7 @@ function AppPageFallback() {
 export default function AppPage() {
   return (
     <Suspense fallback={<AppPageFallback />}>
-      <PeQaShell />
+      <PeDealShell />
     </Suspense>
   );
 }

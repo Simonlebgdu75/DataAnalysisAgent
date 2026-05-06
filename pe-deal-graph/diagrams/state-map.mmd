@@ -1,0 +1,54 @@
+flowchart TB
+    subgraph VISIBLE [Visible conversation state]
+        MSG[messages]
+        ERR[errors]
+        PROG[progress]
+    end
+
+    subgraph CONTEXT [Hidden context-generator state]
+        CGM[_cg_messages]
+        CGS[_cg_structured]
+        AC[_agent_context]
+        LOOK[lookup_result]
+        LANG[user_language]
+    end
+
+    subgraph PLAN [Search plan and tool context]
+        Q[question]
+        CTX[context]
+        SQ[search_query]
+        KW[bm25_keywords]
+        CC[country_code]
+        RM[rerank_mode]
+        TS[tool_summary]
+    end
+
+    subgraph RESULTS [Result state]
+        SL[shortlist]
+        TSL[target_shortlist]
+        DSL[deals_shortlist]
+        ASL[acquirers_shortlist]
+    end
+
+    PIC[prepare_initial_context] --> Q
+    PIC --> LOOK
+    CGR[cg_research] --> CGM
+    CGR --> CGS
+    CGR --> LANG
+    CGI[cg_interrupt] --> CGM
+    SCTX[summarize_context] --> AC
+    AG[agent] --> MSG
+    AG --> PROG
+    TOOL[search_hybrid tool] --> MSG
+    TOOL --> CTX
+    TOOL --> SQ
+    TOOL --> KW
+    TOOL --> CC
+    TOOL --> RM
+    TOOL --> TS
+    TOOL --> SL
+    TOOL --> TSL
+    TOOL --> DSL
+    TOOL --> ASL
+    TOOL --> ERR
+    TOOL --> PROG

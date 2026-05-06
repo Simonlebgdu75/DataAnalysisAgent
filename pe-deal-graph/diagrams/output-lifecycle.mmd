@@ -1,0 +1,12 @@
+flowchart TD
+    QUERY[User request] --> CG[Optional first-turn context]
+    CG --> PLAN[Agent search plan]
+    PLAN --> TOOL[search_hybrid]
+    TOOL --> TARGETS[target_shortlist: kept targets]
+    TARGETS --> DEALS[deals_shortlist: real and synthetic deals]
+    DEALS --> BUYERS[acquirers_shortlist: potential buyers]
+    TARGETS --> FINAL[shortlist: final mixed display entities]
+    DEALS --> FINAL
+    BUYERS --> FINAL
+    FINAL --> SUMMARY[tool_summary]
+    SUMMARY --> ANSWER[Final agent answer]

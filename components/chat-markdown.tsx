@@ -13,9 +13,10 @@ export function ChatMarkdown({ children }: ChatMarkdownProps) {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
-          a: ({ node: _node, ...props }) => (
-            <a {...props} rel="noreferrer" target="_blank" />
-          ),
+          a: ({ node, ...props }) => {
+            void node;
+            return <a {...props} rel="noreferrer" target="_blank" />;
+          },
         }}
       >
         {children}
@@ -23,4 +24,3 @@ export function ChatMarkdown({ children }: ChatMarkdownProps) {
     </div>
   );
 }
-

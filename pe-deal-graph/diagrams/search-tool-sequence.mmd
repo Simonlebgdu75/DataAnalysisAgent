@@ -1,0 +1,21 @@
+sequenceDiagram
+    participant A as agent
+    participant T as search_hybrid tool
+    participant S as search_hybrid()
+    participant DB as PostgreSQL
+    participant R as rerank_results()
+    participant M as ToolMessage / state
+
+    A->>T: Tool call with query, BM25 keywords, country, rerank context
+    T->>T: Normalize country_code
+    T->>S: Run hybrid target retrieval
+    S->>DB: Profile vector + BM25 query
+    S->>DB: Product vector + BM25 query
+    DB-->>S: Candidate target rows
+    S-->>R: shortlist with products_services
+    R->>R: LLM keep/discard batches
+    R->>DB: Load deals, funds, shareholdings
+    DB-->>R: Deal and acquirer evidence
+    R-->>T: Final result payload
+    T-->>M: ToolMessage artifact and Command update
+    M-->>A: Final answer mode

@@ -429,6 +429,65 @@ textarea {
   overflow: hidden;
 }
 
+.result-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px 14px 0;
+}
+
+.result-tab {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.52);
+  padding: 10px 12px;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}
+
+.result-tab[data-active="true"] {
+  border-color: rgba(15, 107, 72, 0.26);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.result-tab span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.result-tab span:last-child {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.82rem;
+}
+
+.metrics-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 22px 0;
+}
+
+.metrics-strip span,
+.entity-type {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 107, 72, 0.12);
+  background: rgba(15, 107, 72, 0.07);
+  padding: 5px 9px;
+  color: var(--accent-strong);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+}
+
 .shortlist-scroll {
   flex: 1;
   min-height: 0;
@@ -465,6 +524,21 @@ textarea {
 .shortlist-table th:nth-child(3),
 .shortlist-table td:nth-child(3) {
   width: 20%;
+}
+
+.result-table th:nth-child(1),
+.result-table td:nth-child(1) {
+  width: 32%;
+}
+
+.result-table th:nth-child(2),
+.result-table td:nth-child(2) {
+  width: 30%;
+}
+
+.result-table th:nth-child(3),
+.result-table td:nth-child(3) {
+  width: 38%;
 }
 
 .shortlist-table th {
@@ -538,6 +612,33 @@ textarea {
   padding: 6px 10px;
   font-size: 0.8rem;
   color: var(--accent-strong);
+}
+
+.relation-list {
+  display: grid;
+  gap: 8px;
+}
+
+.relation-item {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  border-left: 2px solid rgba(15, 107, 72, 0.18);
+  padding-left: 10px;
+}
+
+.relation-item span {
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.relation-item small {
+  overflow-wrap: anywhere;
+  color: var(--ink-muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
 }
 
 .shortlist-empty {
@@ -638,8 +739,15 @@ textarea {
   .panel-header,
   .conversation-scroll,
   .composer,
+  .metrics-strip,
   .shortlist-scroll,
   .login-card {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .result-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     padding-left: 18px;
     padding-right: 18px;
   }

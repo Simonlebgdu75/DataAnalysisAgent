@@ -1,0 +1,21 @@
+flowchart TD
+    RAW[Hybrid target candidates] --> RERANK[Rerank keep/discard]
+    RERANK --> TARGETS[target_shortlist]
+
+    TARGETS --> DEALS_DB[Load real deals from deal]
+    TARGETS --> FP[Load fund_portfolio rows]
+    FP --> SYN[Synthetic shareholding deals]
+    DEALS_DB --> DEALS[deals_shortlist]
+    SYN --> DEALS
+
+    DEALS --> ACQ_FUNDS[Resolve funds via deal_fund and deal.fund_id]
+    DEALS --> NAME_FALLBACK[Create name-only acquirer fallbacks]
+    FP --> SHAREHOLDERS[Attach current and previous shareholders]
+
+    ACQ_FUNDS --> ACQUIRERS[acquirers_shortlist]
+    NAME_FALLBACK --> ACQUIRERS
+    SHAREHOLDERS --> ACQUIRERS
+
+    TARGETS --> FINAL[shortlist final display payload]
+    DEALS --> FINAL
+    ACQUIRERS --> FINAL

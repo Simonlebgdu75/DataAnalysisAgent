@@ -1,0 +1,26 @@
+flowchart TD
+    START([START]) --> ENTRY[entry_router]
+    ENTRY -->|exactly one HumanMessage and no shortlist| PIC[prepare_initial_context]
+    ENTRY -->|first-turn resume with clarification answer| SCTX[summarize_context]
+    ENTRY -->|all other cases| AGENT[agent]
+
+    PIC --> CGR[cg_research]
+    CGR --> CGI[cg_interrupt]
+    CGI --> SCTX
+    SCTX --> AGENT
+
+    AGENT -->|tool call: search_hybrid| TOOLS[ToolNode: search_hybrid]
+    AGENT -->|no tool call| END([END])
+
+    subgraph TOOL [search_hybrid tool body]
+        HS[run_hybrid_search]
+        RR[rerank_results]
+        SUM[build_hybrid_search_summary]
+        CMD[Command update]
+        HS --> RR
+        RR --> SUM
+        SUM --> CMD
+    end
+
+    TOOLS --> HS
+    CMD --> AGENT

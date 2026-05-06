@@ -4,7 +4,7 @@ import { createHmac, randomBytes, scryptSync, timingSafeEqual } from "node:crypt
 import { getAuthEnv } from "@/lib/env";
 import { RouteError } from "@/lib/request";
 
-const SESSION_COOKIE_NAME = "pe_qa_demo_session";
+const SESSION_COOKIE_NAME = "pe_deal_demo_session";
 const SESSION_MAX_AGE_SECONDS = 60 * 60 * 12;
 
 type SessionPayload = {
@@ -187,4 +187,3 @@ function getCookieValue(cookieHeader: string, name: string) {
 
   return undefined;
 }
-

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="400" viewBox="0 0 960 400" role="img" aria-labelledby="title desc">
+  <title id="title">Output lifecycle</title>
+  <desc id="desc">Output lifecycle from user request to context, search, result layers, summary, and final answer.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3f4b5a"/>
+    </marker>
+    <style>
+      .box { fill: #ffffff; stroke: #5b6b7d; stroke-width: 1.4; rx: 8; }
+      .result { fill: #f4f8ff; stroke: #5577aa; stroke-width: 1.4; rx: 8; }
+      .final { fill: #fff7ed; stroke: #b45309; stroke-width: 1.4; rx: 8; }
+      .label { font: 14px Inter, Arial, sans-serif; fill: #172033; text-anchor: middle; dominant-baseline: middle; }
+      .small { font: 12px Inter, Arial, sans-serif; fill: #475569; text-anchor: middle; dominant-baseline: middle; }
+      .edge { stroke: #3f4b5a; stroke-width: 1.4; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="box" x="40" y="65" width="130" height="54"/>
+  <text class="label" x="105" y="92">user request</text>
+
+  <rect class="box" x="230" y="65" width="150" height="54"/>
+  <text class="label" x="305" y="92">context brief</text>
+
+  <rect class="box" x="440" y="65" width="150" height="54"/>
+  <text class="label" x="515" y="92">search plan</text>
+
+  <rect class="final" x="650" y="65" width="170" height="54"/>
+  <text class="label" x="735" y="92">search_hybrid</text>
+
+  <rect class="result" x="150" y="205" width="160" height="54"/>
+  <text class="label" x="230" y="232">target_shortlist</text>
+
+  <rect class="result" x="360" y="205" width="160" height="54"/>
+  <text class="label" x="440" y="232">deals_shortlist</text>
+
+  <rect class="result" x="570" y="205" width="170" height="54"/>
+  <text class="label" x="655" y="232">acquirers_shortlist</text>
+
+  <rect class="final" x="365" y="315" width="170" height="54"/>
+  <text class="label" x="450" y="338">shortlist</text>
+  <text class="small" x="450" y="354">mixed entities</text>
+
+  <rect class="box" x="790" y="315" width="130" height="54"/>
+  <text class="label" x="855" y="342">final answer</text>
+
+  <path class="edge" d="M170 92 L230 92"/>
+  <path class="edge" d="M380 92 L440 92"/>
+  <path class="edge" d="M590 92 L650 92"/>
+  <path class="edge" d="M735 119 C640 165 385 165 230 205"/>
+  <path class="edge" d="M735 119 C665 165 525 165 440 205"/>
+  <path class="edge" d="M735 119 C710 158 675 178 655 205"/>
+  <path class="edge" d="M230 259 C270 300 340 318 365 332"/>
+  <path class="edge" d="M440 259 L450 315"/>
+  <path class="edge" d="M655 259 C600 305 540 320 535 342"/>
+  <path class="edge" d="M535 342 L790 342"/>
+</svg>
